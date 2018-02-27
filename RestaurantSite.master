@@ -1,0 +1,320 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="RestaurantSite.master.cs" Inherits="PerfumeMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>CENTRAL PERK</title>
+    <link rel="Stylesheet" href="Styles/Main.css" />
+    <link rel="Stylesheet" href="Styles/Menu.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="formMain" runat="server">
+        <div class="container">
+            <div class="divbody">
+                <div class="header">
+                    <div class="logo">
+                        <a href="Home.aspx">
+                            <img src="asfa.jpg" alt="logo" /></a>
+                    </div>
+                    <div style="float: right; margin-right: 5px; margin-top: 2px; width: 680px;">
+                        <div style="float: right; padding-left: 5px;">
+                            
+                            <asp:LinkButton ID="LinkButton1"  class="button" runat="server" OnClick="LinkButton1_Click">SEE MENU</asp:LinkButton></div>
+&nbsp;
+                        
+                        <asp:ScriptManager ID="login" runat="server" />
+                        <asp:UpdatePanel ID="upllogin" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <div id="dvsignin" runat="server" style="float: right; margin-top: 4px;" visible="false">
+                                    <label for="loginUname"><b>UserName :</b></label>
+                                    <asp:TextBox ID="loginUname" runat="server" CssClass="logintxtU" placeholder="Enter UserName" />
+                                    <asp:RequiredFieldValidator ID="rvu" runat="server" ErrorMessage="*" ControlToValidate="loginUname" ForeColor="#990000" />
+                                    <label for="Pass"><b>Password :</b></label>
+                                    <asp:TextBox ID="Pass" runat="server" TextMode="Password" CssClass="logintxtU" placeholder="Enter Password" />
+                                    <asp:RequiredFieldValidator ID="rvp" runat="server" ErrorMessage="*" ControlToValidate="Pass" ForeColor="#990000" />
+                                    <asp:Button ID="signin" runat="server" Text="Login" CssClass="button" OnClick="signin_Click" />
+                                    <asp:LinkButton ID="cancel" runat="server" Text="Close" CssClass="cancel" CausesValidation="false" OnClick="cancel_Click" />
+                                </div>
+                                <div id="signini" runat="server" style="float: right; margin-top: 3px;">
+                                    <asp:Button ID="btnsingin" runat="server" Text="Signin" CausesValidation="false" CssClass="signin" OnClick="btnsingin_Click" />
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+
+                    <div class="cartpanel">
+                        <div style="float: right; height: 53px;">
+                            <asp:LinkButton ID="ltHi" runat="server" Text="Hi , " Visible="false"/> <asp:LinkButton ID="lbluname" runat="server"></asp:LinkButton>&nbsp;
+                          <asp:LinkButton ID="logout" runat="server" OnClick="logout_Click" CausesValidation="false" Text="Logout" Visible="false"/>&nbsp;&nbsp;
+                            <img src="Images/cart.png" style="width: 20px; height: 20px" id="imgcart" runat="server" />
+                            <asp:LinkButton ID="lbtcart" runat="server"  href="Cart.aspx" >
+                                Cart(<asp:Literal ID="ltitemCount" runat="server" Text="0"/>)
+                            </asp:LinkButton>&nbsp;&nbsp;<asp:LinkButton ID="lbtoredrhistory" runat="server" Text="Order History" OnClick="lbtoredrhistory_Click" Visible="false"/>
+                         </div></div></div><div>
+                    
+                </div>
+
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+              
+            </div>
+
+        </div>
+
+    </form>
+</body>
+</html>
+ <style>body {
+    background-color: aquamarine;
+    margin: 0px;
+    padding: 0px;
+    font-family: Calibri;
+    font-size: 14px;
+    color: #000000;
+    font-family:Broadway;
+}
+
+h1 {
+    padding: 5px 0 5px 0;
+    margin: 0px;
+    font-size: 18px;
+    color: #FFFFFF;
+    font-family:Broadway;
+}
+
+h2 {
+    padding: 5px 0 5px 0;
+    margin: 0px;
+    font-size: 18px;
+    color: #4a4947;
+    background-color: #FFFFFF;
+    font-family:Broadway;
+}
+
+h3 {
+    padding: 0 0 5px 0;
+    margin: 0px;
+    font-size: 12px;
+    color: #59cef9;
+    font-family:Broadway;
+}
+
+h4 {
+    padding: 0 0 10px 0;
+    margin: 0px;
+    font-size: 14px;
+    color: #7ea743;
+    font-family:Broadway;
+}
+
+p {
+    text-align: justify;
+    padding: 2px 0 2px 0;
+    margin: 0px;
+    line-height: 15px;
+    font-family:Broadway;
+}
+
+.container {
+    width: 1300px;
+    height: 2000px;
+    margin: auto;
+    background-color:white;
+    font-family:Broadway;
+}
+
+.divbody {
+    width: auto;
+    margin: 0px 0px;
+    font-family:Broadway;
+}
+
+.header {
+    width: auto;
+    height: 79px;
+    background-color: #FFFFFF;
+    font-family:Broadway;
+}
+
+.logo {
+    width: 200px;
+    float: left;
+}
+
+.logintxtU {
+    height: 20px;
+    font-family:Broadway;
+}
+
+.cartpanel {
+    vertical-align: top;
+    margin-top: 23px;
+    margin-right: 5px;
+    height: 20px;
+    width: 475px;
+    float: right;
+    font-size: 16px;
+    font-family:Broadway;
+}
+
+    .cartpanel a {
+        vertical-align: top;
+        color: black;
+        font-weight: 300;
+        text-decoration: none;
+        font-family:Broadway;
+    }
+
+        .cartpanel a:hover {
+            color:aqua;
+            font-family:Broadway;
+        }
+
+
+
+.button {
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    color: white;
+    background-color:aqua;
+    cursor: pointer;
+    margin-left: 0px;
+    font-family:Broadway;
+   
+    font-size:20px;
+}
+
+    .button:hover {
+        background-color:aquamarine;
+        font-family:Broadway;
+    }
+
+
+.signin {
+    border: none;
+    color: white;
+    height: 31px;
+    background-color: aquamarine;
+    margin-top: -3px;
+    margin-right: -1px;
+    cursor: pointer;
+    font-family:Broadway;
+}
+
+    .signin:hover {
+        background-color:aqua;
+        font-family:Broadway;
+    }
+
+.textLogin {
+    width: 130px;
+    font-family:Broadway;
+}
+
+.sideLogin {
+    width: 1000px;
+    height: 400px;
+    
+    font-size: 20px;
+    /*background-color:#ededed;*/
+    font-family:Broadway;
+    
+}
+
+    .sideLogin a {
+        font-size: 16px;
+        text-decoration: none;
+        color: black;
+        font-family:Broadway;
+    }
+
+        .sideLogin a:hover {
+            color: aquamarine;
+        }
+
+.contact_information {
+    width: 300px;
+    background: url('/Images/left_content_bg.gif') repeat-x top;
+    float: left;
+}
+
+.lblresponse {
+    font-size: 16px !important;
+    color: aquamarine;
+    font-family:Broadway;
+}
+
+.cancel {
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    font-family:Broadway;
+}
+
+    .cancel:hover {
+        color: aquamarine;
+        font-family:Broadway;
+    }
+
+.icon {
+    width: 30px;
+    height: 25px;
+}
+
+.call {
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.welcome {
+    width: 900px;
+    background-color:aqua;
+    color: #FFFFFF;
+    font-size: 40px;
+    border: none;
+    font-family:Broadway;
+    padding-left: 0px;
+}
+
+.bodyImages {
+    float: right;
+    width: 1000px;
+}
+
+.orderDetails a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-family:Broadway;
+}
+
+    .orderDetails a:hover {
+        color: aquamarine;
+        font-family:Broadway;
+    }
+
+.textBox {
+    width: 749px;
+    height: 25px;
+    font-family:Broadway;
+}
+
+.searchbutton {
+    border: none;
+    color: white;
+    height: 31px;
+    width: 100px;
+    margin-left: -3px;
+    background-color:aquamarine;
+    cursor: pointer;
+    font-family:Broadway;
+}
+
+</style>
