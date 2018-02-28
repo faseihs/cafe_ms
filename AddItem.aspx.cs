@@ -26,7 +26,7 @@ public partial class AddItem : System.Web.UI.Page
             string desc = description.Text;
             int pri = Convert.ToInt32(price.Text);
             Random rn = new Random();
-            string p_image = null;
+            string p_image = " ";
             HttpPostedFile file = Request.Files["p_image"];
             if (file != null && file.ContentLength > 0)
             {
